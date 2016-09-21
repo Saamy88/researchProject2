@@ -1,0 +1,24 @@
+{% extends "skosapp/header.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div style="padding:40px;margin:40px;border:1px solid #ccc">
+        <div class="row">
+            <div class="col-md-10">
+                <h1>Upload RDF</h1>
+                <form action="#" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <input type="submit" value="Upload" />
+                </form>
+                <br>
+{#        {% for r in rdf %}#}
+{#            {{forloop.counter}}.<a href="{{ r.rdf_file.url }}">{{ r.rdf_file.name }}</a>#}
+{#            ({{r.upload_date}})<hr />#}
+{#        {% endfor %}#}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

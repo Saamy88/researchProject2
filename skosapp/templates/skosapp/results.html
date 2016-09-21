@@ -1,0 +1,26 @@
+{% extends "skosapp/header.html" %}
+
+{% block content %}
+
+    <div class="container">
+    <h3> Results </h3>
+    <div class="table-responsive">
+        <table class="table table-striped header-fixed" >
+            <thead>
+            <tr>
+                <th>Terms</th>
+                <th>Importance</th>
+                <th>Frequency</th>
+                <th style="word-wrap: break-word; width: 5%">Internal Relations</th>
+                <th style="word-wrap: break-word; width: 5%">External Relations</th>
+            </tr>
+            </thead>
+            {% for uri, stats in results.items %}
+                <tr>
+                    <td style="word-wrap: break-word; width: 35%"> {{stats.prefLabel}}:</td><td class="col-md-1">{{ stats.importance }}</td><td class="col-md-1">{{ stats.frequency }}</td><td >{{ stats.num_relations }}</td><td>  {{ stats.num_external }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    </div>
+{% endblock %}
