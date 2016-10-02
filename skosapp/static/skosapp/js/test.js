@@ -1,1 +1,1 @@
-alert("Time to analyze");
+alert("Time to analyze and be a champion");
