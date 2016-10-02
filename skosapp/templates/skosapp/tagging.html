@@ -1,0 +1,32 @@
+{% extends "skosapp/header.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div style="padding:40px;margin:40px;border:1px solid #ccc">
+        <div class="row">
+            <div class="col-md-10">
+                <h1>Upload text to analyze</h1>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea class="form-control" name="text_area" id="TextArea" rows="10">Type or copy text like a kush</textarea>
+                        <label for="ChooseThesaurus">Choose thesaurus </label>
+                        <select class="form-control" id="selectThesaurus">
+                            <option>Thesaurus1</option>
+                            <option>Thesaurus2</option>
+                            <option>Thesaurus3</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Analyze</button>
+                </form>
+                <br>
+{#        {% for r in rdf %}#}
+{#            {{forloop.counter}}.<a href="{{ r.rdf_file.url }}">{{ r.rdf_file.name }}</a>#}
+{#            ({{r.upload_date}})<hr />#}
+{#        {% endfor %}#}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

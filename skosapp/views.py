@@ -1,3 +1,4 @@
+import json
 from django.core.exceptions import ValidationError
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -73,10 +74,6 @@ def skos(request):
         skos_tool.sort()
         results = skos_tool.get_metrics()
 
-        for dummy in results.iteritems():
-            print dummy
-            break
-
 
         return render(request, 'skosapp/results.html', {'results': results})
     else:
@@ -104,3 +101,41 @@ def corpus_fetch(request):
 
     #corpus_util.get_corpus_data()
     return HttpResponseRedirect(reverse('upload'))
+
+def uploadText(request):
+
+    if request.method == 'POST':
+        with open('thesaurus_data/smpa.rj') as json_data:
+            d = json.load(json_data)
+            myList = []
+            label = ""
+            count = 0
+            for key, value in d.iteritems():
+
+                if 'http://www.w3.org/2004/02/skos/core#prefLabel' in value:
+                    label = value['http://www.w3.org/2004/02/skos/core#prefLabel'][0]['value']
+                    count += 1
+                    myList.append(label)
+
+                if 'http://www.w3.org/2000/01/rdf-schema#label' in value:
+                    count += 1
+                    if(label != value["http://www.w3.org/2000/01/rdf-schema#label"][0]['value']):
+                        myList.append(value["http://www.w3.org/2000/01/rdf-schema#label"][0]['value'])
+
+                if 'http://www.w3.org/2004/02/skos/core#altLabel' in value:
+                    count += 1
+                    myList.append(value['http://www.w3.org/2004/02/skos/core#altLabel'][0]['value'])
+
+                if 'http://www.w3.org/2004/02/skos/core#hiddenLabel' in value:
+                    count += 1
+                    myList.append(value['http://www.w3.org/2004/02/skos/core#hiddenLabel'][0]['value'])
+
+        text =  request.POST.get('text_area')
+        list_time = ['kush', 'peacon', 'chocolate', "everyday"]
+        return render(request, 'skosapp/analyze_results.html', {'thesaurus': myList,
+                                                                'text':text, 'list_time':list_time})
+    else:
+        return render(request, 'skosapp/tagging.html')
+
+def analyzeText(request):
+    return 'lol'
