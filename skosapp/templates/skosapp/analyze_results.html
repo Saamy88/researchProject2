@@ -1,0 +1,42 @@
+{% extends "skosapp/header.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content %}
+    <div style="padding:40px;margin:40px;border:1px solid #ccc">
+    <link rel="stylesheet" type="text/css" href="{% static 'skosapp/css/highlight-style.css' %}">
+        <div class="row">
+            <div class="col-md-10">
+                <h1 id="header1">Upload text to analyze</h1>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <p id="result_p">{{ text }}</p>
+
+                    </div>
+                </form>
+                <br>
+{#        {% for r in rdf %}#}
+{#            {{forloop.counter}}.<a href="{{ r.rdf_file.url }}">{{ r.rdf_file.name }}</a>#}
+{#            ({{r.upload_date}})<hr />#}
+{#        {% endfor %}#}
+            </div>
+        </div>
+    </div>
+    <script type="application/javascript" src="{% static 'skosapp/js/jquery.mark.min.js' %}"></script>
+    <script>
+
+            $(document).ready(function () {
+
+                $('#result_p').mark({{ json_thesaurus|safe }}, {
+                    "accuracy":"exactly",
+                    "className":"mark",
+                    "separateWordSearch" : false
+                });
+            });
+
+
+    </script>
+
+{% endblock %}
