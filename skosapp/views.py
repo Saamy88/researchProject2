@@ -107,7 +107,7 @@ def uploadText(request):
     if request.method == 'POST':
         with open('thesaurus_data/smpa.rj') as json_data:
             d = json.load(json_data)
-            myList = []
+            thesaurus = []
             label = ""
             count = 0
             for key, value in d.iteritems():
@@ -115,25 +115,29 @@ def uploadText(request):
                 if 'http://www.w3.org/2004/02/skos/core#prefLabel' in value:
                     label = value['http://www.w3.org/2004/02/skos/core#prefLabel'][0]['value']
                     count += 1
-                    myList.append(label)
+                    thesaurus.append(label)
 
                 if 'http://www.w3.org/2000/01/rdf-schema#label' in value:
                     count += 1
                     if(label != value["http://www.w3.org/2000/01/rdf-schema#label"][0]['value']):
-                        myList.append(value["http://www.w3.org/2000/01/rdf-schema#label"][0]['value'])
+                        thesaurus.append(value["http://www.w3.org/2000/01/rdf-schema#label"][0]['value'])
 
                 if 'http://www.w3.org/2004/02/skos/core#altLabel' in value:
                     count += 1
-                    myList.append(value['http://www.w3.org/2004/02/skos/core#altLabel'][0]['value'])
+                    for label in value['http://www.w3.org/2004/02/skos/core#altLabel']:
+                        thesaurus.append(label['value'])
 
                 if 'http://www.w3.org/2004/02/skos/core#hiddenLabel' in value:
                     count += 1
-                    myList.append(value['http://www.w3.org/2004/02/skos/core#hiddenLabel'][0]['value'])
+                    for label in value['http://www.w3.org/2004/02/skos/core#hiddenLabel']:
+                        thesaurus.append(label['value'])
 
         text =  request.POST.get('text_area')
-        list_time = ['kush', 'peacon', 'chocolate', "everyday"]
-        return render(request, 'skosapp/analyze_results.html', {'thesaurus': myList,
-                                                                'text':text, 'list_time':list_time})
+        json_thesaurus = json.dumps(thesaurus)
+
+
+        return render(request, 'skosapp/analyze_results.html', {'json_thesaurus': json_thesaurus,
+                                                                'text':text})
     else:
         return render(request, 'skosapp/tagging.html')
 

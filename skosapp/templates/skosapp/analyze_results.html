@@ -12,7 +12,8 @@
                 <form action="#" method="post">
                     {% csrf_token %}
                     <div class="form-group">
-                        <p>{{ text }}</p>
+                        <p id="result_p">{{ text }}</p>
+
                     </div>
                 </form>
                 <br>
@@ -23,17 +24,19 @@
             </div>
         </div>
     </div>
-    <script type="application/javascript" src="{% static 'skosapp/js/jquery.highlight.js' %}"></script>
+    <script type="application/javascript" src="{% static 'skosapp/js/jquery.mark.min.js' %}"></script>
     <script>
-
-        {% for w in list_time %}
 
             $(document).ready(function () {
 
-                $('p').highlight("{{ w }}");
+                $('#result_p').mark({{ json_thesaurus|safe }}, {
+                    "accuracy":"exactly",
+                    "className":"mark",
+                    "separateWordSearch" : false
+                });
             });
 
-        {% endfor %}
+
     </script>
 
 {% endblock %}
