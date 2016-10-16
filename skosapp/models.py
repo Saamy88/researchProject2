@@ -16,6 +16,18 @@ class RdfUpload(models.Model):
     def __unicode__(self):
         return str(self.upload_date)
 
+
+class ThesaurusUpload(models.Model):
+
+    title = models.CharField(max_length=64)
+    thesaurus_file = models.FileField("File", upload_to="thesaurus_data/")
+    upload_date = models.DateTimeField(auto_now_add=True)
+    project_ID = models.CharField(max_length=128, default=None)
+
+    def __unicode__(self):
+        return str(self.upload_date)
+
+
 # FileUpload form class.
 class UploadForm(ModelForm):
 
@@ -35,3 +47,20 @@ class UploadForm(ModelForm):
     class Meta:
         model = RdfUpload
         fields = ['title', 'owner','project_ID', 'corpus_ID', 'rdf_file',]
+
+class UploadForm2(ModelForm):
+
+    class Meta:
+        model = ThesaurusUpload
+        fields = ['title', 'project_ID', 'thesaurus_file']
+
+    def clean_thesaurus_file(self):
+        file = self.cleaned_data['thesaurus_file']
+        filename = str(file)
+        if not "rj" in filename:
+            raise ValidationError("Please upload a file with an '.rj' extension.")
+        return file
+
+    def clean_project_ID(self):
+        return self.cleaned_data['project_ID']
+

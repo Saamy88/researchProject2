@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse, resolve
 from django.contrib.auth import views, tokens, decorators
 from django.views.generic import DetailView
 import requests
-from .models import RdfUpload, UploadForm
+from .models import RdfUpload, UploadForm, UploadForm2
 from common.util.skos_tool import SkosTool
 from common.util import corpus_util
 
@@ -97,15 +97,13 @@ def corpus_fetch(request):
     :param request:
     :return:
     """
-
-
     #corpus_util.get_corpus_data()
     return HttpResponseRedirect(reverse('upload'))
 
 def uploadText(request):
 
     if request.method == 'POST':
-        with open('thesaurus_data/smpa.rj') as json_data:
+        with open('media/thesaurus_data/smpa.rj') as json_data:
             d = json.load(json_data)
             thesaurus = []
             label = ""
@@ -141,5 +139,18 @@ def uploadText(request):
     else:
         return render(request, 'skosapp/tagging.html')
 
-def analyzeText(request):
-    return 'lol'
+def uploadThesaurus(request):
+
+    if request.method == "POST":
+        form = UploadForm2(request.POST, request.FILES)
+
+        if form.is_valid():
+            #TODO add it to the dropdown menu
+            #TODO validate that the thesaurus was uploaded succesfully
+            #TODO verify is not already there
+            return HttpResponseRedirect(reverse('tagging'))
+
+    else:
+        form = UploadForm2()
+
+    return render(request, 'skosapp/upload_thesaurus.html', {'form':form})
