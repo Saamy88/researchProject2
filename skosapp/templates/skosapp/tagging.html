@@ -13,10 +13,11 @@
                     <div class="form-group">
                         <textarea class="form-control" name="text_area" id="TextArea" rows="10">Type or copy text</textarea>
                         <label for="ChooseThesaurus">Choose thesaurus </label>
-                        <select class="form-control" id="selectThesaurus">
-                            <option>Thesaurus1</option>
-                            <option>Thesaurus2</option>
-                            <option>Thesaurus3</option>
+                        <select class="form-control" name="select_thesaurus">
+
+                            {% for key, value in thesaurus_dict.items %}
+                                <option>{{ key }} </option>
+                            {% endfor %}
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Analyze</button>

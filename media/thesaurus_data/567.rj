@@ -1,0 +1,365 @@
+{
+  "https://infoneer.poolparty.biz/CarProject/0" : {
+    "http://purl.org/dc/terms/contributor" : [ {
+      "value" : "fameri",
+      "type" : "literal"
+    } ],
+    "http://purl.org/dc/terms/created" : [ {
+      "value" : "2016-02-05T17:09:04Z",
+      "type" : "literal",
+      "datatype" : "http://www.w3.org/2001/XMLSchema#dateTime"
+    } ],
+    "http://purl.org/dc/terms/creator" : [ {
+      "value" : "fameri",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://purl.org/dc/terms/modified" : [ {
+      "value" : "2016-02-05T17:10:04Z",
+      "type" : "literal",
+      "datatype" : "http://www.w3.org/2001/XMLSchema#dateTime"
+    } ],
+    "http://purl.org/dc/terms/subject" : [ {
+      "value" : "cars",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://purl.org/dc/terms/title" : [ {
+      "value" : "Car Parts",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+      "value" : "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+      "value" : "Car Parts",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#hasTopConcept" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/1",
+      "type" : "uri"
+    }, {
+      "value" : "https://infoneer.poolparty.biz/CarProject/7",
+      "type" : "uri"
+    } ]
+  },
+  "https://infoneer.poolparty.biz/CarProject/1" : {
+    "http://purl.org/dc/terms/created" : [ {
+      "value" : "2016-02-05T17:09:17Z",
+      "type" : "literal",
+      "datatype" : "http://www.w3.org/2001/XMLSchema#dateTime"
+    } ],
+    "http://purl.org/dc/terms/creator" : [ {
+      "value" : "fameri",
+      "type" : "literal"
+    } ],
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+      "value" : "http://www.w3.org/2004/02/skos/core#Concept",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#narrower" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/2",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "value" : "Body",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#topConceptOf" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/0",
+      "type" : "uri"
+    } ]
+  },
+  "https://infoneer.poolparty.biz/CarProject/10" : {
+    "http://purl.org/dc/terms/created" : [ {
+      "value" : "2016-02-05T17:21:47Z",
+      "type" : "literal",
+      "datatype" : "http://www.w3.org/2001/XMLSchema#dateTime"
+    } ],
+    "http://purl.org/dc/terms/creator" : [ {
+      "value" : "fameri",
+      "type" : "literal"
+    } ],
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+      "value" : "http://www.w3.org/2004/02/skos/core#Concept",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#narrower" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/11",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "value" : "Sedan Car ",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#topConceptOf" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/9",
+      "type" : "uri"
+    } ]
+  },
+  "https://infoneer.poolparty.biz/CarProject/11" : {
+    "http://purl.org/dc/terms/created" : [ {
+      "value" : "2016-02-05T17:22:31Z",
+      "type" : "literal",
+      "datatype" : "http://www.w3.org/2001/XMLSchema#dateTime"
+    } ],
+    "http://purl.org/dc/terms/creator" : [ {
+      "value" : "fameri",
+      "type" : "literal"
+    } ],
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+      "value" : "http://www.w3.org/2004/02/skos/core#Concept",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#broader" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/10",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "value" : "BMW",
+      "type" : "literal",
+      "lang" : "en"
+    } ]
+  },
+  "https://infoneer.poolparty.biz/CarProject/2" : {
+    "http://purl.org/dc/terms/created" : [ {
+      "value" : "2016-02-05T17:09:37Z",
+      "type" : "literal",
+      "datatype" : "http://www.w3.org/2001/XMLSchema#dateTime"
+    } ],
+    "http://purl.org/dc/terms/creator" : [ {
+      "value" : "fameri",
+      "type" : "literal"
+    } ],
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+      "value" : "http://www.w3.org/2004/02/skos/core#Concept",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#broader" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/1",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "value" : "Body Door",
+      "type" : "literal",
+      "lang" : "en"
+    } ]
+  },
+  "https://infoneer.poolparty.biz/CarProject/3" : {
+    "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+      "value" : "Passengers",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://www.w3.org/2002/07/owl#deprecated" : [ {
+      "value" : "true",
+      "type" : "literal",
+      "datatype" : "http://www.w3.org/2001/XMLSchema#boolean"
+    } ]
+  },
+  "https://infoneer.poolparty.biz/CarProject/4" : {
+    "http://purl.org/dc/terms/created" : [ {
+      "value" : "2016-02-05T17:10:19Z",
+      "type" : "literal",
+      "datatype" : "http://www.w3.org/2001/XMLSchema#dateTime"
+    } ],
+    "http://purl.org/dc/terms/creator" : [ {
+      "value" : "fameri",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://purl.org/dc/terms/subject" : [ {
+      "value" : "cars",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://purl.org/dc/terms/title" : [ {
+      "value" : "Passengers",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+      "value" : "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+      "value" : "Passengers",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#hasTopConcept" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/5",
+      "type" : "uri"
+    } ]
+  },
+  "https://infoneer.poolparty.biz/CarProject/5" : {
+    "http://purl.org/dc/terms/created" : [ {
+      "value" : "2016-02-05T17:10:30Z",
+      "type" : "literal",
+      "datatype" : "http://www.w3.org/2001/XMLSchema#dateTime"
+    } ],
+    "http://purl.org/dc/terms/creator" : [ {
+      "value" : "fameri",
+      "type" : "literal"
+    } ],
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+      "value" : "http://www.w3.org/2004/02/skos/core#Concept",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#narrower" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/6",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "value" : "Driver",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#topConceptOf" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/4",
+      "type" : "uri"
+    } ]
+  },
+  "https://infoneer.poolparty.biz/CarProject/6" : {
+    "http://purl.org/dc/terms/contributor" : [ {
+      "value" : "fameri",
+      "type" : "literal"
+    } ],
+    "http://purl.org/dc/terms/created" : [ {
+      "value" : "2016-02-05T17:10:43Z",
+      "type" : "literal",
+      "datatype" : "http://www.w3.org/2001/XMLSchema#dateTime"
+    } ],
+    "http://purl.org/dc/terms/creator" : [ {
+      "value" : "fameri",
+      "type" : "literal"
+    } ],
+    "http://purl.org/dc/terms/modified" : [ {
+      "value" : "2016-02-05T17:11:52Z",
+      "type" : "literal",
+      "datatype" : "http://www.w3.org/2001/XMLSchema#dateTime"
+    } ],
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+      "value" : "http://www.w3.org/2004/02/skos/core#Concept",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#broader" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/5",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "value" : "Expert Driver",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#related" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/8",
+      "type" : "uri"
+    } ]
+  },
+  "https://infoneer.poolparty.biz/CarProject/7" : {
+    "http://purl.org/dc/terms/created" : [ {
+      "value" : "2016-02-05T17:11:07Z",
+      "type" : "literal",
+      "datatype" : "http://www.w3.org/2001/XMLSchema#dateTime"
+    } ],
+    "http://purl.org/dc/terms/creator" : [ {
+      "value" : "fameri",
+      "type" : "literal"
+    } ],
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+      "value" : "http://www.w3.org/2004/02/skos/core#Concept",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#narrower" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/8",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "value" : "Tire",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#topConceptOf" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/0",
+      "type" : "uri"
+    } ]
+  },
+  "https://infoneer.poolparty.biz/CarProject/8" : {
+    "http://purl.org/dc/terms/contributor" : [ {
+      "value" : "fameri",
+      "type" : "literal"
+    } ],
+    "http://purl.org/dc/terms/created" : [ {
+      "value" : "2016-02-05T17:11:28Z",
+      "type" : "literal",
+      "datatype" : "http://www.w3.org/2001/XMLSchema#dateTime"
+    } ],
+    "http://purl.org/dc/terms/creator" : [ {
+      "value" : "fameri",
+      "type" : "literal"
+    } ],
+    "http://purl.org/dc/terms/modified" : [ {
+      "value" : "2016-02-05T17:11:52Z",
+      "type" : "literal",
+      "datatype" : "http://www.w3.org/2001/XMLSchema#dateTime"
+    } ],
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+      "value" : "http://www.w3.org/2004/02/skos/core#Concept",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#broader" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/7",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
+      "value" : "Performance Tire",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#related" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/6",
+      "type" : "uri"
+    } ]
+  },
+  "https://infoneer.poolparty.biz/CarProject/9" : {
+    "http://purl.org/dc/terms/created" : [ {
+      "value" : "2016-02-05T17:21:31Z",
+      "type" : "literal",
+      "datatype" : "http://www.w3.org/2001/XMLSchema#dateTime"
+    } ],
+    "http://purl.org/dc/terms/creator" : [ {
+      "value" : "fameri",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://purl.org/dc/terms/subject" : [ {
+      "value" : "cars",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://purl.org/dc/terms/title" : [ {
+      "value" : "Car Types",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+      "value" : "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+      "type" : "uri"
+    } ],
+    "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+      "value" : "Car Types",
+      "type" : "literal",
+      "lang" : "en"
+    } ],
+    "http://www.w3.org/2004/02/skos/core#hasTopConcept" : [ {
+      "value" : "https://infoneer.poolparty.biz/CarProject/10",
+      "type" : "uri"
+    } ]
+  }
+}

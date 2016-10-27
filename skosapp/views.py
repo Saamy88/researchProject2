@@ -10,7 +10,11 @@ import requests
 from .models import RdfUpload, UploadForm, UploadForm2
 from common.util.skos_tool import SkosTool
 from common.util import corpus_util
+import os.path
+import pickle
 
+def changed_filename_path(instance, filename):
+    return os.path.join("thesaurus_data/", "trolol.js")
 
 def index(request):
     return render(request, 'skosapp/home.html')
@@ -61,7 +65,6 @@ def skos(request):
     :return:
     """
 
-
     pk = request.session.get('rdf', default=None)
 
     location = request.session['location']
@@ -102,10 +105,22 @@ def corpus_fetch(request):
 
 def uploadText(request):
 
+    if(os.path.exists('media/thesaurus_data/thesaurus_dict.pickle')):
+
+            with open('media/thesaurus_data/thesaurus_dict.pickle', 'rb') as handle:
+                    thesaurus_dict = pickle.load(handle)
+    else:
+        thesaurus_dict = {}
+
     if request.method == 'POST':
-        with open('media/thesaurus_data/smpa.rj') as json_data:
+        selected_thesaurus = request.POST.get("select_thesaurus")
+        id = thesaurus_dict[selected_thesaurus]
+
+        with open('media/thesaurus_data/' + id + '.rj') as json_data:
             d = json.load(json_data)
             thesaurus = []
+            myDict = {}
+
             label = ""
             count = 0
             for key, value in d.iteritems():
@@ -130,14 +145,16 @@ def uploadText(request):
                     for label in value['http://www.w3.org/2004/02/skos/core#hiddenLabel']:
                         thesaurus.append(label['value'])
 
-        text =  request.POST.get('text_area')
+        text = request.POST.get('text_area')
+        print(text)
         json_thesaurus = json.dumps(thesaurus)
 
 
         return render(request, 'skosapp/analyze_results.html', {'json_thesaurus': json_thesaurus,
                                                                 'text':text})
     else:
-        return render(request, 'skosapp/tagging.html')
+
+        return render(request, 'skosapp/tagging.html', {'thesaurus_dict':thesaurus_dict})
 
 def uploadThesaurus(request):
 
@@ -145,9 +162,27 @@ def uploadThesaurus(request):
         form = UploadForm2(request.POST, request.FILES)
 
         if form.is_valid():
-            #TODO add it to the dropdown menu
-            #TODO validate that the thesaurus was uploaded succesfully
-            #TODO verify is not already there
+            instance = form.save(commit=False)
+            project_id = form.clean_project_ID()
+            title = form.clean_title()
+
+            if os.path.exists('media/thesaurus_data/thesaurus_dict.pickle'):
+                with open('media/thesaurus_data/thesaurus_dict.pickle', 'rb') as handle:
+                    thesaurus_dict = pickle.load(handle)
+
+                    if project_id not in thesaurus_dict.values():
+                        thesaurus_dict[title] = project_id
+                        instance.save()
+                        with open('media/thesaurus_data/thesaurus_dict.pickle', 'wb',) as handle:
+                            pickle.dump(thesaurus_dict, handle)
+
+            else:
+                instance.save()
+                thesaurus_dict = {}
+                thesaurus_dict[title] = project_id
+                with open('media/thesaurus_data/thesaurus_dict.pickle', 'wb',) as handle:
+                    pickle.dump(thesaurus_dict, handle)
+
             return HttpResponseRedirect(reverse('tagging'))
 
     else:

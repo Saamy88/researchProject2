@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+import os
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.forms import ModelForm
@@ -16,11 +17,13 @@ class RdfUpload(models.Model):
     def __unicode__(self):
         return str(self.upload_date)
 
+def changed_filename_path(instance, filename):
+    return os.path.join("thesaurus_data/", instance.project_ID + ".rj")
 
 class ThesaurusUpload(models.Model):
 
     title = models.CharField(max_length=64)
-    thesaurus_file = models.FileField("File", upload_to="thesaurus_data/")
+    thesaurus_file = models.FileField("File", upload_to=changed_filename_path)
     upload_date = models.DateTimeField(auto_now_add=True)
     project_ID = models.CharField(max_length=128, default=None)
 
@@ -63,4 +66,14 @@ class UploadForm2(ModelForm):
 
     def clean_project_ID(self):
         return self.cleaned_data['project_ID']
+
+    def clean_title(self):
+        return self.cleaned_data['title']
+
+    def clean_thesaurus_filename(self):
+        file = self.cleaned_data['thesaurus_file']
+        return str(file)
+
+
+
 

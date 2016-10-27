@@ -16,12 +16,26 @@
                     </div>
                 </form>
                 <br>
+                <table class="table" id="myTable">
+                    <thead>
+                    <tr>
+                        <th>Term</th>
+                        <th>Occurrences</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+
 {#        {% for r in rdf %}#}
 {#            {{forloop.counter}}.<a href="{{ r.rdf_file.url }}">{{ r.rdf_file.name }}</a>#}
 {#            ({{r.upload_date}})<hr />#}
 {#        {% endfor %}#}
+                <button type="button" class="btn btn-info">Export</button>
             </div>
         </div>
+
     </div>
     <script type="application/javascript" src="{% static 'skosapp/js/jquery.mark.min.js' %}"></script>
     <script>
@@ -34,7 +48,30 @@
                     "separateWordSearch" : false
                 });
             });
+    </script>
+    <script type="application/javascript">
 
+        String.prototype.count = function(lit, cis) {
+            var m = this.toString().match(new RegExp(lit, ((cis) ? "gi" : "g")));
+            return (m != null) ? m.length : 0;
+        }
+
+    var arrayLength = {{ json_thesaurus|safe }}.length;
+
+        //TEST IT WITH THE STRING 'KJ METHOD'
+    for(var i = 0; i < arrayLength; i++)
+    {
+        var amount_of_occurrences = "{{ text }}".count({{ json_thesaurus|safe }}[i], true);
+        if(amount_of_occurrences != 0)
+        {
+            var table = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(0);
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            cell1.innerHTML = {{ json_thesaurus|safe }}[i];
+            cell2.innerHTML = amount_of_occurrences;
+        }
+    }
 
     </script>
 
