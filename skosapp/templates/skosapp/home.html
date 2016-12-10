@@ -1,7 +1,46 @@
 {% extends "skosapp/header.html" %}
 
 {% block content %}
-<p> home page </p>
+
+    <div style="padding:40px;margin:40px;border:1px solid #ccc">
+        <div class="row">
+            <div class="col-md-10">
+                <h2>Instructions for Corpus Analyzer</h2>
+                <p>Steps for using the corpus analyzer tool:</p>
+                <p>1) Click the 'Corpus Analyzer' option on the left sidebar. </p>
+                <p>2) Give a title to the analysis. </p>
+                <p>3) Log In to the PoolParty server and open the desired project to analyze.</p>
+                <p>4) Copy the Project ID number found under the project's name and paste in the project ID field. </p>
+                <p>5) Copy the Corpus ID number found under the corpus's name in the Corpus Management tab, and paste in the corpus ID field. </p>
+                <p>6) In the PoolParty server project's webpage, click the export button found in the 'PROJECT' tab. </p>
+                <p>7) Click on 'RDF Project Export', select format 'RDF/XML', and click 'Export' to download a file with extension 'rdf'.</p>
+                <p>8) In the corpus analyzer, upload the just recently file by clicking the 'Choose File' button.</p>
+                <p>9) Click upload to analyze the corpus.</p>
+                <br>
+                <h2>Instructions for Entity Extractor</h2>
+                <p>Steps for using the entity extractor tool :</p>
+                <p>1) Type of paste the desired text to analyze. </p>
+                <p>2) Choose the desired thesaurus that will analyze the text. </p>
+                <p>3) Click analyze.</p>
+                <br>
+                <h5>If it is necessary to upload a new thesaurus that is not on the list, follow the instructions: </h5>
+                <p>1) Click the upload thesaurus option in the 'Entity Extractor' tool.</p>
+                <p>2) In the title field, give a descriptive title to the thesaurus that will be uploaded.</p>
+                <p>3) Log In to the PoolParty server and open the desired project to analyze.</p>
+                <p>4) Copy the Project ID number found under the project's name and paste in the project ID field. </p>
+                <p>5) In the PoolParty server project's webpage, click the export button found in the 'PROJECT' tab. </p>
+                <p>6) Click on 'RDF Project Export', select format 'RDF/JSON', and click 'Export' to download a file with extension 'rj'.</p>
+                <p>7) Back to the 'Entity Extractor' tool, click 'Choose File' button and upload the recently downloaded file. </p>
+                <p>8) Click 'Upload' button.</p>
+                <p>Notes: To delete the thesaurus that are already in the list, click on the delete list link, found in the
+                   'Entity Extractor' page</p>
+                <p> To update a specific thesaurus, click on the 'upload new thesaurus' link and provide the same name
+                    used on the existent thesaurus along with the same project ID.</p>
+
+
+            </div>
+        </div>
+    </div>
 
 
 {#{% include "skosapp/includes/test_snippet.html" %}#}

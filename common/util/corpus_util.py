@@ -19,8 +19,8 @@ def __parse_corpus_response(response):
     :return: dict of concepts and their frequencies
     """
     concepts = {}
-    for con in response:
-        name = con['conceptUri']['uri'].encode('utf-8')
+    for con in response.json():
+        name = con['concept']['uri'].encode('utf-8')
         freq = con['frequency']
         concepts[name] = freq
 
@@ -41,7 +41,7 @@ def __query_corpus(idx=0):
     if result.text == '[]' or result.text == '[ ]':
         return None
     else:
-        return json.loads(result.text)
+        return result
 
 
 
@@ -63,6 +63,7 @@ def get_corpus_data(corpus_file='corpus_data/frequencies.json', corpus_id='0', p
     response = __query_corpus(idx)
     extracted_concepts = {}
     while response is not None:
+
         extracted_concepts.update(__parse_corpus_response(response))    # append dict of frequencies
         idx += 20
         response = __query_corpus(idx)

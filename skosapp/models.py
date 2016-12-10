@@ -17,13 +17,15 @@ class RdfUpload(models.Model):
     def __unicode__(self):
         return str(self.upload_date)
 
+
 def changed_filename_path(instance, filename):
     return os.path.join("thesaurus_data/", instance.project_ID + ".rj")
+
 
 class ThesaurusUpload(models.Model):
 
     title = models.CharField(max_length=64)
-    thesaurus_file = models.FileField("File", upload_to=changed_filename_path)
+    thesaurus_file = models.FileField("File", upload_to=changed_filename_path, help_text="Please upload a file with a '.rj' extension.You can find this in the PoolParty-exporting options of the project.")
     upload_date = models.DateTimeField(auto_now_add=True)
     project_ID = models.CharField(max_length=128, default=None)
 
@@ -49,7 +51,8 @@ class UploadForm(ModelForm):
 
     class Meta:
         model = RdfUpload
-        fields = ['title', 'owner','project_ID', 'corpus_ID', 'rdf_file',]
+        fields = ['title', 'owner', 'project_ID', 'corpus_ID', 'rdf_file',]
+
 
 class UploadForm2(ModelForm):
 
@@ -71,8 +74,8 @@ class UploadForm2(ModelForm):
         return self.cleaned_data['title']
 
     def clean_thesaurus_filename(self):
-        file = self.cleaned_data['thesaurus_file']
-        return str(file)
+        filename = self.cleaned_data['thesaurus_file']
+        return str(filename)
 
 
 

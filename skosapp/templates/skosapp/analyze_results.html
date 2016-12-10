@@ -12,7 +12,7 @@
                 <form action="#" method="post">
                     {% csrf_token %}
                     <div class="form-group">
-                        <p id="result_p">{{ text }}</p>
+                        <pre id="result_p">{{ text }}</pre>
                     </div>
                 </form>
                 <br>
@@ -32,7 +32,7 @@
 {#            {{forloop.counter}}.<a href="{{ r.rdf_file.url }}">{{ r.rdf_file.name }}</a>#}
 {#            ({{r.upload_date}})<hr />#}
 {#        {% endfor %}#}
-                <button type="button" class="btn btn-info">Export</button>
+                <button type="button" id="exportBtn" class="btn btn-info">Export</button>
             </div>
         </div>
 
@@ -40,38 +40,120 @@
     <script type="application/javascript" src="{% static 'skosapp/js/jquery.mark.min.js' %}"></script>
     <script>
 
-            $(document).ready(function () {
-
-                $('#result_p').mark({{ json_thesaurus|safe }}, {
-                    "accuracy":"exactly",
-                    "className":"mark",
-                    "separateWordSearch" : false
-                });
+    function highlight(term){
+        $(document).ready(function () {
+            $('#result_p').mark(term, {
+                "accuracy":"exactly",
+                "className":"mark",
+                "separateWordSearch" : false
             });
+        });
+    }
+    function highlight2(term){
+        $(document).ready(function () {
+            $('#result_p').mark(term, {
+                "accuracy":"exactly",
+                "className":"mark2",
+                "separateWordSearch" : false
+            });
+        });
+    }
+        var jsonObj = {{ json_myDict|safe }};
+
+        for(var key in jsonObj)
+        {
+            if(jsonObj.hasOwnProperty(key))
+            {
+                if(jsonObj[key].length == 0)
+                {
+                    highlight(key);
+
+                }
+                else
+                {
+                    highlight(key);
+                    highlight2(jsonObj[key]);
+                }
+            }
+        }
     </script>
+
     <script type="application/javascript">
 
-        String.prototype.count = function(lit, cis) {
-            var m = this.toString().match(new RegExp(lit, ((cis) ? "gi" : "g")));
+        String.prototype.count = function(lit) {
+            var m = this.toString().match(new RegExp(lit, ("gi")));
             return (m != null) ? m.length : 0;
+        }
+
+        function countOccurrences(from_this_text, string_to_search)
+        {
+
+            var result = from_this_text.match(new RegExp(string_to_search, "ig"));
+            if(result === null) return 0;
+
+            return result.length;
         }
 
     var arrayLength = {{ json_thesaurus|safe }}.length;
 
-        //TEST IT WITH THE STRING 'KJ METHOD'
-    for(var i = 0; i < arrayLength; i++)
+    var jsonObj = {{ json_myDict|safe }};
+    var amount_of_occurrences;
+    var stringText = {{ json_raw_text|safe }};
+    for(var key in jsonObj)
     {
-        var amount_of_occurrences = "{{ text }}".count({{ json_thesaurus|safe }}[i], true);
-        if(amount_of_occurrences != 0)
-        {
-            var table = document.getElementById('myTable').getElementsByTagName('tbody')[0];
-            var newRow = table.insertRow(0);
-            var cell1 = newRow.insertCell(0);
-            var cell2 = newRow.insertCell(1);
-            cell1.innerHTML = {{ json_thesaurus|safe }}[i];
-            cell2.innerHTML = amount_of_occurrences;
+        amount_of_occurrences = 0;
+        if(jsonObj.hasOwnProperty(key)){
+
+            if(jsonObj[key].length == 0)
+            {
+                //alert("we found " + amount_of_occurrences + "in " + key);
+                amount_of_occurrences = countOccurrences(stringText, key);
+                if(amount_of_occurrences != 0)
+                {
+                    var table = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+                    var newRow = table.insertRow(0);
+                    var cell1 = newRow.insertCell(0);
+                    var cell2 = newRow.insertCell(1);
+                    cell1.innerHTML = key;
+                    cell2.innerHTML = amount_of_occurrences;
+                }
+
+                //alert(key + " has 0 altLabels or hiddenLabels");
+            }
+            else
+            {
+
+                amount_of_occurrences = countOccurrences(stringText, key);
+
+                for(var i = 0; i < jsonObj[key].length; i++)
+                {
+                    //alert(key + "->" + jsonObj[key][i]);
+                    amount_of_occurrences = amount_of_occurrences +  countOccurrences(stringText, jsonObj[key][i]);;
+                }
+
+                if(amount_of_occurrences != 0)
+                {
+                    var table = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+                    var newRow = table.insertRow(0);
+                    var cell1 = newRow.insertCell(0);
+                    var cell2 = newRow.insertCell(1);
+                    cell1.innerHTML = key;
+                    cell2.innerHTML = amount_of_occurrences;
+                }
+            }
         }
     }
+    </script>
+
+    <script src="{% static 'skosapp/js/jquery.base64.js' %}"></script>
+    <script src="{% static 'skosapp/js/tableExport.js' %}"></script>
+    <script>
+
+    $(document).ready(function(){
+            $("#exportBtn").click(function(){
+                $('#myTable').tableExport({type:'csv',escape:'false'});
+            });
+        });
 
     </script>
 

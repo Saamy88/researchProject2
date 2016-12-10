@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^corpus/$', views.corpus, name='corpus'),
     url(r'^corpus_fetch/$', views.corpus_fetch, name='corpus_fetch'),
     url(r'^thesaurus/$', views.uploadThesaurus, name='upload_thesaurus'),
+    url(r'^reset/$', views.resetThesaurus, name='reset_thesaurus'),
 ]

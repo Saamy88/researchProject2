@@ -8,25 +8,20 @@
             <div class="col-md-10">
                 <h1>Upload text to analyze</h1>
                 <p>If you need to upload a thesaurus, click <a href="{% url 'upload_thesaurus' %}">here</a>.</p>
+                <p>If you need to delete all the list of thesaurus, click <a href="{% url 'reset_thesaurus' %}">here</a>.</p>
                 <form action="#" method="post">
                     {% csrf_token %}
                     <div class="form-group">
                         <textarea class="form-control" name="text_area" id="TextArea" rows="10">Type or copy text</textarea>
                         <label for="ChooseThesaurus">Choose thesaurus </label>
                         <select class="form-control" name="select_thesaurus">
-
                             {% for key, value in thesaurus_dict.items %}
-                                <option>{{ key }} </option>
+                                <option>{{ value }} </option>
                             {% endfor %}
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Analyze</button>
                 </form>
-                <br>
-{#        {% for r in rdf %}#}
-{#            {{forloop.counter}}.<a href="{{ r.rdf_file.url }}">{{ r.rdf_file.name }}</a>#}
-{#            ({{r.upload_date}})<hr />#}
-{#        {% endfor %}#}
             </div>
         </div>
     </div>
